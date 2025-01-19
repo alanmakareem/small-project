@@ -1,5 +1,5 @@
 const busNum = 136//parseInt(prompt(`Type bus number:`));
-const inputTime = `11:22`//prompt(`When do you want to go? (use H:MM format)`);
+const inputTime = `6:22`//prompt(`When do you want to go? (use H:MM format)`);
 const tt = `time`//prompt(`Type 'TIME' to show the next 10 schedule for bus no.${busNum}. Skip to see the next bus arrival time.`).toLowerCase();
 
 let startHour = null;
@@ -15,11 +15,12 @@ if (typeof busNum === `string`) {
 } else if (busNum === 136) {
     startHour = 7
     startMinute = 56
-    interval = 6
+    interval = 7
 } else {
     console.log(`Bus no.${busNum} is not available.`);
 } 
 
+//for showing timetable after user time input:
 function timeSchedule(inputTime) {
     const [inputHour, inputMinute] = inputTime.split(`:`).map(Number);
     const inputTimeInMinutes = inputHour * 60 + inputMinute;
@@ -38,6 +39,8 @@ function timeSchedule(inputTime) {
             console.log(`${i + 1}. ${earlyHour}:${earlyMinute < 10 ? `0${earlyMinute}` : earlyMinute}`);
             startTimeInMinutes += 8;
         }
+
+        console.log(`***** END *****`);
     } else {
         console.log(`The next 10 schedules for bus no.${busNum} are:`);
 
@@ -47,9 +50,12 @@ function timeSchedule(inputTime) {
             console.log(`${i + 1}. ${scheduleHour}:${scheduleMinute < 10 ? `0${scheduleMinute}` : scheduleMinute}`);
             nextTimeInMinutes += interval;
         }
+
+        console.log(`***** END *****`);
     }
 }
 
+//for showing how many minutes left until the next bus
 function busSchedule(startHour, startMinute, interval, inputTime) {
     const startTimeInMinute = startHour * 60 + startMinute;
     const [inputHour, inputMinute] = inputTime.split(`:`).map(Number);
