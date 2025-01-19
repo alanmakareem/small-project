@@ -1,5 +1,5 @@
 const busNum = 136//parseInt(prompt(`Type bus number:`));
-const inputTime = `6:22`//prompt(`When do you want to go? (use H:MM format)`);
+const inputTime = `7:50`//prompt(`When do you want to go? (use H:MM format)`);
 const tt = `time`//prompt(`Type 'TIME' to show the next 10 schedule for bus no.${busNum}. Skip to see the next bus arrival time.`).toLowerCase();
 
 let startHour = null;
@@ -10,8 +10,8 @@ if (typeof busNum === `string`) {
     console.log(`*** INVALID BUS NUMBER ***`);
 } else if (busNum === 125) {
     startHour = 8
-    startMinute = 13
-    interval = 8
+    startMinute = 3
+    interval = 6
 } else if (busNum === 136) {
     startHour = 7
     startMinute = 56
@@ -32,12 +32,13 @@ function timeSchedule(inputTime) {
     let nextTimeInMinutes = inputTimeInMinutes + minutesLeft;
 
     if (inputTimeInMinutes < startTimeInMinutes) {
+        nextTimeInMinutes = startTimeInMinutes;
         console.log(`Here is the timetable for bus no.${busNum}:`);
         for (let i = 0; i < 10; i++) {
             const earlyHour = Math.floor(startTimeInMinutes / 60);
             const earlyMinute = startTimeInMinutes % 60;
             console.log(`${i + 1}. ${earlyHour}:${earlyMinute < 10 ? `0${earlyMinute}` : earlyMinute}`);
-            startTimeInMinutes += 8;
+            startTimeInMinutes += interval;
         }
 
         console.log(`***** END *****`);
