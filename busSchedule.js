@@ -43,3 +43,13 @@ function busSchedule(startHour, startMinute, interval, inputTime) {
 
     return minutesLeft === interval ? 0 : minutesLeft;
 }
+
+const minutesLeft = busSchedule(startHour, startMinute, interval, inputTime);
+
+if (typeof minutesLeft === `string`) {
+    console.log(minutesLeft);
+} else if (minutesLeft === 0) {
+    console.log(`Bus no.${busNum} is arriving now!`);
+} else {
+    console.log(`Bus no.${busNum} will arrive in ${minutesLeft} minute(s)`);
+}
