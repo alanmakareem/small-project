@@ -1,5 +1,10 @@
+const timeNow = new Date();
+const hoursNow = timeNow.getHours();
+const minuteNow = timeNow.getMinutes();
+const inputTime = `${hoursNow}:${minuteNow < 10 ? `0` : ``}${minuteNow}`;
+
+
 const busNum = 136//parseInt(prompt(`Type bus number:`));
-const inputTime = `7:50`//prompt(`When do you want to go? (use H:MM format)`);
 const tt = `time`//prompt(`Type 'TIME' to show the next 10 schedule for bus no.${busNum}. Skip to see the next bus arrival time.`).toLowerCase();
 
 let startHour = null;
@@ -79,6 +84,7 @@ const minutesLeft = busSchedule(startHour, startMinute, interval, inputTime);
 if (typeof minutesLeft === `string`) {
     console.log(minutesLeft);
 } else if (tt === `time`) {
+    console.log(`The next bus no.${busNum} will be in ${minutesLeft} minute(s).`);
     timeSchedule(inputTime);
 } else if (minutesLeft === 0) {
     console.log(`Bus no.${busNum} is arriving now!`);
